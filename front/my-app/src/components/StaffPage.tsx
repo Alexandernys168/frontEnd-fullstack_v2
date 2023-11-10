@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 //import ApiService from '../services/ApiServices'; // Du måste implementera denna service
+import {doctors, staffs} from "../utils/mockData";
 
 type MessageType = {
     id: number; // Adjust the type according to your actual data structure
@@ -33,6 +34,13 @@ const StaffPage = () => {
     return (
         <div>
             <h2>Staff Page</h2>
+            <h3>Available Staff´s</h3>
+            {staffs.map((staff) => (
+                <div key={staff.id}>
+                    <p>Name: {staff.name}, Role: {staff.role}, Department: {staff.department}.</p>
+                    <p></p>
+                </div>
+            ))}
             <div>
                 <h3>Messages</h3>
                 <ul>

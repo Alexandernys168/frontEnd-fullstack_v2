@@ -3,34 +3,28 @@ import LoginPage from './components/LoginPage';
 import PatientPage from './components/PatientPage';
 import DoctorPage from './components/DoctorPage';
 import StaffPage from './components/StaffPage';
+import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
 
 function App() {
-    const currentPath = window.location.pathname;
-
-    const renderComponent = () => {
-        if (currentPath === '/patient') {
-            return <PatientPage />;
-        } else if (currentPath === '/doctor') {
-            return <DoctorPage />;
-        } else if (currentPath === '/staff') {
-            return <StaffPage />;
-        } else {
-            return <LoginPage />;
-        }
-    };
-
     return (
-        <div>
-            <h1>My App</h1>
-            <ul>
-                <li><a href="/">Login</a></li>
-                <li><a href="/patient">Patient Page</a></li>
-                <li><a href="/doctor">Doctor Page</a></li>
-                <li><a href="/staff">Staff Page</a></li>
-            </ul>
-            <hr />
-            {renderComponent()}
-        </div>
+        <BrowserRouter>
+            <div>
+                <h1>My App</h1>
+                <ul>
+                    <li><a href="/">Login</a></li>
+                    <li><a href="/patient">Patient Page</a></li>
+                    <li><a href="/doctor">Doctor Page</a></li>
+                    <li><a href="/staff">Staff Page</a></li>
+                </ul>
+                <hr />
+                <Routes>
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/patient" element={<PatientPage />} />
+                    <Route path="/doctor" element={<DoctorPage />} />
+                    <Route path="/staff" element={<StaffPage />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
