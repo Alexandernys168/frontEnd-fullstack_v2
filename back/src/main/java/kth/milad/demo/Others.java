@@ -5,28 +5,25 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Doctor {
+@Table(name = "other")
+public class Others {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "others")
     private List<Patient> patients;
 
-    @OneToMany(mappedBy = "doctor")
-    private List<Msg> messages;
-
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "others")
     private List<Encounter> encounters;
 
-    public Doctor() {}
+    public Others() {}
 
-    public Doctor(int id, String name, List<Patient> patients, List<Msg> messages, List<Encounter> encounters) {
+    public Others(int id, String name, List<Patient> patients, List<Encounter> encounters) {
         this.id = id;
         this.name = name;
         this.patients = patients;
-        this.messages = messages;
         this.encounters = encounters;
     }
 
@@ -54,14 +51,6 @@ public class Doctor {
         this.patients = patients;
     }
 
-    public List<Msg> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Msg> messages) {
-        this.messages = messages;
-    }
-
     public List<Encounter> getEncounters() {
         return encounters;
     }
@@ -72,11 +61,10 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor{" +
+        return "Others{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", patients=" + patients +
-                ", messages=" + messages +
                 ", encounters=" + encounters +
                 '}';
     }
