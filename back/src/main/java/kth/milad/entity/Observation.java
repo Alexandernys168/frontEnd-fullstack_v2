@@ -1,4 +1,4 @@
-package kth.milad.demo;
+package kth.milad.entity;
 
 
 import jakarta.persistence.*;
@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "observation")
+//@Table(name = "observation")
 public class Observation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

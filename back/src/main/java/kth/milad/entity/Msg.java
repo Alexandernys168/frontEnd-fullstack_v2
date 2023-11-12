@@ -1,39 +1,30 @@
-package kth.milad.demo;
+package kth.milad.entity;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Msg")
+//@Table(name = "Msg")
 public class Msg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content = "";
     private LocalDateTime timeStamp;
-
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
-
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
-
-    @ManyToOne
-    @JoinColumn(name = "other_id")
-    private Others others;
-
+    //todo två variblbar en sender en reciver
+    int sender; //här ska man lägga id för avsändaren som kan va en patient eller vad somhelst
+    int receiver; //samma här men för reciver
 
 
     public Msg() {}
 
-    public Msg(int id, String content, LocalDateTime timeStamp, Patient patient) {
+    public Msg(int id, String content, int sender,int receiver) {
         this.id = id;
         this.content = content;
-        this.timeStamp = timeStamp;
-        this.patient = patient;
+        this.timeStamp = LocalDateTime.now();
+        this.sender = sender;
+        this.receiver = receiver;
     }
 
     public int getId() {
@@ -60,12 +51,20 @@ public class Msg {
         this.timeStamp = timeStamp;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public int getSender() {
+        return sender;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setSender(int sender) {
+        this.sender = sender;
+    }
+
+    public int getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(int receiver) {
+        this.receiver = receiver;
     }
 
     @Override
@@ -74,7 +73,8 @@ public class Msg {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", timeStamp=" + timeStamp +
-                ", patient=" + patient +
+                ", sender=" + sender +
+                ", receiver=" + receiver +
                 '}';
     }
 }

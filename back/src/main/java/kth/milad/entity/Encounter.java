@@ -1,9 +1,9 @@
-package kth.milad.demo;
+package kth.milad.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "encounter")
+//@Table(name = "encounter")
 public class Encounter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Encounter {
     private Others others;
 
     @OneToOne
-    private Observation observation;
+    private Observation observation;//todo list of observation
 
     public Encounter() {}
 
