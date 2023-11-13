@@ -1,7 +1,8 @@
-package kth.milad.demo;
+package kth.milad.demo.domain;
 
 
 import jakarta.persistence.*;
+import kth.milad.demo.domain.Encounter;
 
 import java.time.LocalDateTime;
 

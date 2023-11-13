@@ -1,4 +1,4 @@
-package kth.milad.demo;
+package kth.milad.demo.application;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000'; // Byt ut med din backend URL
+const API_BASE_URL = 'http://localhost:8080'; // Byt ut med din backend URL
 
 const ApiService = {
     getPatientInfo: () => {

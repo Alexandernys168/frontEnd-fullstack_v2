@@ -1,4 +1,4 @@
-package kth.milad.demo;
+package kth.milad.demo.domain;
 
 import jakarta.persistence.*;
 
