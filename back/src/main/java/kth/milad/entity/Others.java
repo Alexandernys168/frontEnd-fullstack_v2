@@ -9,7 +9,7 @@ import java.util.List;
 public class Others {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int othersId;
     private String name;
 
 
@@ -18,18 +18,18 @@ public class Others {
 
     public Others() {}
 
-    public Others(int id, String name,  List<Encounter> encounters) {
-        this.id = id;
+    public Others(int othersId, String name,  List<Encounter> encounters) {
+        this.othersId = othersId;
         this.name = name;
         this.encounters = encounters;
     }
 
-    public int getId() {
-        return id;
+    public int getOthersId() {
+        return othersId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOthersId(int othersId) {
+        this.othersId = othersId;
     }
 
     public String getName() {
@@ -53,7 +53,7 @@ public class Others {
     @Override
     public String toString() {
         return "Others{" +
-                "id=" + id +
+                "otherId=" + othersId +
                 ", name='" + name + '\'' +
                 ", encounters=" + encounters +
                 '}';

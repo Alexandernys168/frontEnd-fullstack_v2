@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@RequestMapping("/api/patients")
 public class PatientController {
     private IService<Patient> patientService;
 
@@ -19,20 +19,20 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/patients")
+    @GetMapping
     public List<Patient> fetchPatientList(){
         System.out.println("get petienst called");
         List<Patient> list = patientService.getAll();
         return list;
     }
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/{id}")
     public Patient getPatientById(@PathVariable int id) {
         Patient patient =  patientService.getById(id);
        return  patient;
     }
 
-    @PostMapping("patient")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createPatient(@RequestBody Patient patient){
         System.out.println("patient = " + patient);

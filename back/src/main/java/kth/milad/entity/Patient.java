@@ -10,22 +10,22 @@ import java.util.List;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int patientId;
     private String name;
 
     public Patient() {}
 
-    public Patient(int id, String name) {
-        this.id = id;
+    public Patient(int patientId, String name) {
+        this.patientId = patientId;
         this.name = name;
     }
 
     public int getId() {
-        return id;
+        return patientId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int patientId) {
+        this.patientId = patientId;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
-                "id=" + id +
+                "patientId=" + patientId +
                 ", name='" + name + '\'' +
                 '}';
     }

@@ -14,16 +14,20 @@ public class Observation {
     private String msg = "";
     private LocalDateTime timeStamp;
 
+    @Column(name = "encounter_id")
+    private int encounterId;
+
     @OneToOne
+    @JoinColumn(name = "encounter_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Encounter encounter;
 
     public Observation() {}
 
-    public Observation(int id, String msg, LocalDateTime timeStamp, Encounter encounter) {
+    public Observation(int id, String msg, LocalDateTime timeStamp, int encounterId) {
         this.id = id;
         this.msg = msg;
         this.timeStamp = timeStamp;
-        this.encounter = encounter;
+        this.encounterId = encounterId;
     }
 
     public int getId() {
@@ -49,14 +53,15 @@ public class Observation {
     public void setTimeStamp(LocalDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
-
-    public Encounter getEncounter() {
-        return encounter;
+    public int getEncounterId() {
+        return encounterId;
     }
 
-    public void setEncounter(Encounter encounter) {
-        this.encounter = encounter;
+    public void setEncounterId(int encounterId) {
+        this.encounterId = encounterId;
     }
+
+
 
     @Override
     public String toString() {
@@ -64,7 +69,7 @@ public class Observation {
                 "id=" + id +
                 ", msg='" + msg + '\'' +
                 ", timeStamp=" + timeStamp +
-                ", encounter=" + encounter +
+                ", encounter_id=" + encounterId +
                 '}';
     }
 }

@@ -3,7 +3,7 @@ import LoginPage from './components/LoginPage';
 import PatientPage from './components/PatientPage';
 import DoctorPage from './components/DoctorPage';
 import StaffPage from './components/StaffPage';
-import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
     return (

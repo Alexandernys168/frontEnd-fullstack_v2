@@ -21,17 +21,15 @@ public class Encounter {
     @JoinColumn(name = "other_id")
     private Others others;
 
-    @OneToOne
+    @OneToOne(mappedBy = "encounter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "observation_id")
     private Observation observation;//todo list of observation
 
     public Encounter() {}
 
-    public Encounter(int id, Doctor doctor, Patient patient, Others others, Observation observation) {
+    public Encounter(int id, Observation observation) {
         this.id = id;
-        this.doctor = doctor;
-        this.patient = patient;
-        this.others = others;
-        this.observation = observation;
+        setObservation(observation);
     }
 
     public int getId() {

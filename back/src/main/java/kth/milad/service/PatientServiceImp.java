@@ -24,7 +24,7 @@ public class PatientServiceImp implements IService<Patient>{
     }*/
     @Override
     public Patient getById(int entity) {
-        return patientRepository.findById(entity).get();
+        return patientRepository.findByPatientId(entity).get();
     }
 
     public void create(Patient entity){

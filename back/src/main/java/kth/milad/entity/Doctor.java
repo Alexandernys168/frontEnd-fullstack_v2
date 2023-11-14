@@ -1,14 +1,15 @@
 package kth.milad.entity;
 
 import jakarta.persistence.*;
+import kth.milad.repository.Sender;
 
 import java.util.List;
 
 @Entity
-public class Doctor {
+public class Doctor implements Sender {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int doctorId;
     private String name;
     //    @OneToMany(mappedBy = "doctor")
 //    private List<Msg> messages;
@@ -17,24 +18,25 @@ public class Doctor {
 //    private List<Encounter> encounters;
     public Doctor() {}
 
-    public Doctor(int id, String name) {
-        this.id = id;
+    public Doctor(int doctorId, String name) {
+        this.doctorId = doctorId;
         this.name = name;
 
     }
-//    public Doctor(int id, String name,  List<Msg> messages, List<Encounter> encounters) {
-//        this.id = id;
+//    public Doctor(int doctorId, String name,  List<Msg> messages, List<Encounter> encounters) {
+//        this.doctorId = doctorId;
 //        this.name = name;
 //        this.messages = messages;
 //        this.encounters = encounters;
 //    }
 
+    @Override
     public int getId() {
-        return id;
+        return doctorId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getName() {
@@ -66,7 +68,7 @@ public class Doctor {
     @Override
     public String toString() {
         return "Doctor{" +
-                "id=" + id +
+                "doctorId=" + doctorId +
                 ", name='" + name + '\'' +
                 '}';
     }

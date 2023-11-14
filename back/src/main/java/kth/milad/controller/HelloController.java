@@ -1,8 +1,5 @@
-<<<<<<< HEAD:back/src/main/java/kth/milad/entity/HelloController.java
-package kth.milad.entity;
-=======
-package kth.milad.demo.application;
->>>>>>> Fetching-data-to-frontend:back/src/main/java/kth/milad/entity/application/HelloController.java
+
+package kth.milad.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
