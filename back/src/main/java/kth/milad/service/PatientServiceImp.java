@@ -16,12 +16,10 @@ public class PatientServiceImp implements IService<Patient>{
     @Override
     public List<Patient> getAll() {
         List<Patient> list =  patientRepository.findAll();
-        System.out.println("list = in service imp " + list);
+        System.out.println("patientList = in service imp " + list);
         return list;
     }
-    /*@Override    public List<PatientVM> getAll() {
-        return (List<Patient>) patientRepository.findAll();
-    }*/
+
     @Override
     public Patient getById(int entity) {
         return patientRepository.findById(entity).get();

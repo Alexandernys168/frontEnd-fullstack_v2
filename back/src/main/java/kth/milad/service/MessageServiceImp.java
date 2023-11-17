@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MessageService implements IService<Msg> {
+public class MessageServiceImp implements IService<Msg> {
     @Autowired
-    MessageRepository messageRepository;
+    private MessageRepository messageRepository;
 
     @Override
     public List<Msg> getAll() {
