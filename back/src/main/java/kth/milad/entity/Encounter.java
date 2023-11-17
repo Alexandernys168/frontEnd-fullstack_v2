@@ -3,6 +3,7 @@ package kth.milad.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -17,19 +18,9 @@ public class Encounter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int patientId;
+    private LocalDateTime timeStamp;
 
     @OneToMany(mappedBy = "encounter", cascade = CascadeType.ALL)
     private List<Observation> observations;
-
-    @ManyToOne
-    @JoinColumn(name= "patient_id")
-    private Patient patient;
-
-    @ManyToOne
-    @JoinColumn(name= "doctor_id")
-    private Doctor doctor;
-
-    @ManyToOne
-    @JoinColumn(name= "other_id")
-    private Others others;
 }

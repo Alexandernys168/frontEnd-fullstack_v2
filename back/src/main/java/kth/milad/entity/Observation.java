@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -20,4 +21,8 @@ public class Observation {
     private int id;
     private String msg = "";
     private LocalDateTime timeStamp;
+
+    @ManyToOne
+    @JoinColumn(name = "encounter")
+    private Encounter encounter;
 }

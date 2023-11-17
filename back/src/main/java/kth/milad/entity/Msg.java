@@ -19,7 +19,6 @@ public class Msg {
     private int id;
     private String content = "";
     private LocalDateTime timeStamp;
-    //todo två variblbar en sender en reciver
     private int sender; //här ska man lägga id för avsändaren som kan va en patient eller vad somhelst
     private int receiver; //samma här men för reciver
 

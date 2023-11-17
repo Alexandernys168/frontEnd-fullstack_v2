@@ -19,4 +19,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(unique = true)
+    private String email;
+    private String password;
 }
