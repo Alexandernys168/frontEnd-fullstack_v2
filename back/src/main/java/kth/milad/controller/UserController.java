@@ -76,6 +76,11 @@ public class UserController {
         for (Others o:others) {
             userVms.add(new UserVm(o.getId(),o.getName(),"OTHERS",o.getEmail(),"HIDDEN"));
         }
+
+        List<Patient> patients = patientService.getAll();
+        for (Patient p:patients) {
+            userVms.add(new UserVm(p.getId(), p.getName(), "PATIENT", p.getEmail(),"HIDDEN"));
+        }
         System.out.println("userVms = " + userVms);
         return userVms;
     }
