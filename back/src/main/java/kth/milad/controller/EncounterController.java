@@ -32,7 +32,7 @@ public class EncounterController {
         }
 
 
-        @GetMapping("/patient/{patientId}")
+        @GetMapping("/encounter/patient/{patientId}")
         public List<Encounter> getAllEncountersByPatientId(@PathVariable int patientId) {
             return encounterServiceImp.getAllEncountersByPatientId(patientId);
         }

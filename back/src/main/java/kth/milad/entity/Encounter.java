@@ -21,6 +21,6 @@ public class Encounter {
     private int patientId;
     private LocalDateTime timeStamp;
 
-    @OneToMany(mappedBy = "encounter", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "encounter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Observation> observations;
 }

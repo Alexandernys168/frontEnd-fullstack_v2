@@ -48,6 +48,11 @@ public class UserController {
             userVms.add(new UserVm(o.getId(),o.getName(),"OTHERS",o.getEmail(),o.getPassword()));
         }
 
+        List<Patient> patients = patientService.getAll();
+        for (Patient p:patients) {
+            userVms.add(new UserVm(p.getId(), p.getName(), "PATIENT", p.getEmail(),p.getPassword()));
+        }
+
 
         for (UserVm u:userVms) {
             if (u.getEmail() == null || userVm.getEmail() == null) {

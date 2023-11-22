@@ -1,10 +1,10 @@
-import { User } from "../interface/interface";
+import {Encounter, LoginUser, Observation, User} from "../interface/interface";
 
 const API_BASE_URL = 'http://localhost:8080'; // Byt ut med din backend URL
 
 
 const ApiService = {
-    getPatientInfo: () => {
+    getPatients: () => {
         return fetch(`${API_BASE_URL}/patients`)
             .then(response => {
                 if (!response.ok) {
@@ -14,7 +14,7 @@ const ApiService = {
             });
     },
     getPatientById: (id: number) => {
-        return fetch(`${API_BASE_URL}/patients/${id}`)
+        return fetch(`${API_BASE_URL}/patient/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -68,7 +68,7 @@ const ApiService = {
             });
     },
     getEncounterByPatientId: (patientId: number) => {
-        return fetch(`${API_BASE_URL}/patient/${patientId}`)
+        return fetch(`${API_BASE_URL}/encounter/patient/${patientId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -103,6 +103,48 @@ const ApiService = {
                 return response.json();
             });
     },
+    createEncounter: async (encounter: Encounter) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/encounter`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(encounter),
+            });
+
+            if (!response.ok) {
+                throw new Error('Encounter failed at apiService');
+            }
+
+
+             // Parse response body as JSON
+            return await response.json(); // Return the created encounter object
+        } catch (error) {
+            console.error('Encounter creation Error at Catch:', error);
+            throw new Error('Encounter creation failed as throw in Catch:'); // Throw error for failed registration
+        }
+    },
+    createObservation: async (patientId: number, observation: Observation) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/patient/${patientId}/observation`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(observation),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add observation');
+            }
+
+            return true; // Indicate successful registration
+        } catch (error) {
+            console.error('Add Observation Error:', error);
+            throw new Error('Failed to add observation'); // Throw error for failed registration
+        }
+    },
     registerUser: async (user: User) => {
         try {
             const response = await fetch(`${API_BASE_URL}/register`, {
@@ -121,6 +163,26 @@ const ApiService = {
         } catch (error) {
             console.error('Registration Error:', error);
             throw new Error('Registration failed'); // Throw error for failed registration
+        }
+    },
+    loginUser: async (user: LoginUser) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user),
+            });
+
+            if (!response.ok) {
+                throw new Error('LogIn failed');
+            }
+
+            return true; // Indicate successful registration
+        } catch (error) {
+            console.error('LogIn Error:', error);
+            throw new Error('LogIn failed'); // Throw error for failed registration
         }
     }
     // Lägg till fler funktioner för att skicka data och utföra andra API-anrop

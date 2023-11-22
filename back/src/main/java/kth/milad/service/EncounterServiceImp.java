@@ -8,6 +8,7 @@ import kth.milad.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,12 +37,20 @@ public class EncounterServiceImp implements IService<Encounter>{
         return encounterRepository.findAllByPatientId(patientId);
     }
 
+
     public void addObservationByPatientId(int patientId, Observation observation) {
-        Encounter encounter = encounterRepository.findByPatientId(patientId);
+        Encounter encounter = encounterRepository.findEncounterByPatientId(patientId);
 
         if (encounter != null) {
 
+            observation.setEncounter(encounter); // Associate the observation with the encounter
+
+            if (encounter.getObservations() == null) {
+                encounter.setObservations(new ArrayList<>());
+            }
+
             encounter.getObservations().add(observation);
+
             encounterRepository.save(encounter);
         } else {
             System.out.println("Observation couldn't be added because encounter is null: " + patientId);

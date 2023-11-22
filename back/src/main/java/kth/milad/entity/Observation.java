@@ -19,7 +19,7 @@ public class Observation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String msg = "";
+    private String msg;
     private LocalDateTime timeStamp;
 
     @ManyToOne

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface EncounterRepository extends JpaRepository<Encounter,Integer> {
     List<Encounter> findAllByPatientId(int patientId);
-    Encounter findByPatientId(int patientId);
+    Encounter findEncounterByPatientId(int patientId);
 }

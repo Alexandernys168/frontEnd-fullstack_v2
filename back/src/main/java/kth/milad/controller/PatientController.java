@@ -21,12 +21,12 @@ public class PatientController {
 
     @GetMapping("/patients")
     public List<Patient> fetchPatientList(){
-        System.out.println("get petienst called");
+        System.out.println("get patients called");
         List<Patient> list = patientService.getAll();
         return list;
     }
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/patient/{id}")
     public Patient getPatientById(@PathVariable int id) {
         Patient patient =  patientService.getById(id);
        return  patient;
