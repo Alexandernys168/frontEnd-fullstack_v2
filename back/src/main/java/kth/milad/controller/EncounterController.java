@@ -56,6 +56,7 @@ public class EncounterController {
             encounterServiceImp.addObservationToEncounter(encounterId, observation);
             return ResponseEntity.ok("Observation added to encounter successfully");
         } catch (Exception e) {
+            System.out.println("Caught in controller");
             return ResponseEntity.notFound().build(); // Handle encounter not found
         }
     }

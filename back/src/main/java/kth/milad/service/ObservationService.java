@@ -18,4 +18,8 @@ public class ObservationService {
     public Observation getObservationById(int observationId) {
         return observationRepository.findById(observationId).orElse(null);
     }
+    public Observation getObservationByEncounterId(int encounterId) {
+        return observationRepository.findObservationByEncounterId(encounterId);
+    }
+
 }

@@ -25,9 +25,9 @@ const DoctorPage = () => {
             <h1>List of Patients</h1>
             <ul>
                 {patients.map((patient) => (
-                    <li key={patient.id}>
-                        {patient.name} - {patient.id}
-                        <Link to={`/doctor/selectedPatient/${patient.id}`}>
+                    <li key={patient.userId}>
+                        {patient.name} - {patient.userId}
+                        <Link to={`/doctor/selectedPatient/${patient.userId}`}>
                             <button>Select Patient</button>
                         </Link>
                     </li>

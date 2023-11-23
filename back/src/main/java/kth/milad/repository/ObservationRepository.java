@@ -11,5 +11,6 @@ public interface ObservationRepository extends JpaRepository<Observation, Intege
     // Define custom query methods if needed
     List<Observation> findAllByEncounterId(int encounterId);
 
+    Observation findObservationByEncounterId(int encounterId);
 }
 

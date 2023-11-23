@@ -24,6 +24,16 @@ public class ObservationController {
         return ResponseEntity.ok(createdObservation);
     }
 
+    @GetMapping("/observations/encounter/{encounterId}")
+    public ResponseEntity<Observation> getObservationByEncounterId(@PathVariable int encounterId) {
+        Observation observation = observationService.getObservationByEncounterId(encounterId);
+        if (observation != null) {
+            return ResponseEntity.ok(observation);
+        } else {
+            return ResponseEntity.notFound().build(); // Observation not found
+        }
+    }
+
     // Endpoint to get an observation by its ID
     @GetMapping("/observations/{observationId}")
     public ResponseEntity<Observation> getObservationById(@PathVariable int observationId) {

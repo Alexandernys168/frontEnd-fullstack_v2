@@ -26,11 +26,11 @@ export interface Encounter {
 export interface Observation {
     msg: string;
     timeStamp: string;
-    encounterId: number;
+
 }
 
 export interface Patient {
-    id: number;
+    userId: number;
     name: string;
     email: string;
 }

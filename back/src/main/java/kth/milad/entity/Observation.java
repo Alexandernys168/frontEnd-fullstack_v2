@@ -1,6 +1,7 @@
 package kth.milad.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Observation {
     private String msg;
     private LocalDateTime timeStamp;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "encounter")
     private Encounter encounter;

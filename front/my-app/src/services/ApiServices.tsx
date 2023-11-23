@@ -103,6 +103,15 @@ const ApiService = {
                 return response.json();
             });
     },
+    getAllEncountersByPatientId: (patientId: number) => {
+        return fetch(`${API_BASE_URL}/encounter/patient/${patientId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Nätverksfel vid hämtning av data');
+                }
+                return response.json();
+            });
+    },
     createEncounter: async (encounter: Encounter) => {
         try {
             const response = await fetch(`${API_BASE_URL}/encounter`, {
@@ -156,13 +165,13 @@ const ApiService = {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to add observation to encounter');
+                throw new Error('Failed to add observation to encounter, response not ok');
             }
 
             return response.json(); // Return response JSON data if needed
         } catch (error) {
             console.error('Error:', error);
-            throw new Error('Failed to add observation to encounter');
+            throw new Error('Failed to add observation to encounter, were caught');
         }
     },
     registerUser: async (user: User) => {
