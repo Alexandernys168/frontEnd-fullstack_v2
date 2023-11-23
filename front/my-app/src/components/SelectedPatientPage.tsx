@@ -34,26 +34,29 @@ const SelectedPatientPage = () => {
                 const observationData = {
                     msg: note,
                     timeStamp: new Date().toISOString(),
-                    encounterId: encounterCreation.id // Use the created encounter's ID
+                    encounterId: encounterCreation,
                 };
+                console.log("Encounter is: " + encounterCreation, "encounterID: " + encounterCreation.id);
+
 
                 // Create the observation associated with the encounter
-                const observationCreation = await ApiServices.createObservation(parseInt(patientId || ''),observationData);
+                const observationCreation = await ApiServices.addObservationToEncounter(encounterCreation.id,observationData);
 
                 if (observationCreation) {
-                    // Optionally navigate or perform other actions after successfully adding the observation
-                    navigate(`/doctor/selectedPatient/${patientId}`);
+                    // Observation created successfully and associated with the encounter
+                    console.log('Observation created:', observationCreation);
+                    // Perform any necessary action after successful creation
                 } else {
-                    // Handle observation creation failure
                     console.error('Failed to create observation');
+                    // Handle failed observation creation
                 }
             } else {
-                // Handle encounter creation failure
                 console.error('Failed to create encounter');
+                // Handle failed encounter creation
             }
         } catch (error) {
-            // Handle any other errors here
             console.error('Error:', error);
+            // Handle any other errors here
         }
     };
 

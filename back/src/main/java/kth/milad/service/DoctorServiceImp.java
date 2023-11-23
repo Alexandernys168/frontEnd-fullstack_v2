@@ -27,7 +27,7 @@ public class DoctorServiceImp implements IService<Doctor>{
     }
 
     @Override
-    public void create(Doctor entity) {
-        doctorRepository.save(entity);
+    public Doctor create(Doctor entity) {
+        return doctorRepository.save(entity);
     }
 }

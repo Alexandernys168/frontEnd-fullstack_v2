@@ -145,6 +145,26 @@ const ApiService = {
             throw new Error('Failed to add observation'); // Throw error for failed registration
         }
     },
+    addObservationToEncounter: async (encounterId: number, observation: Observation) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/encounter/${encounterId}/observation`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(observation),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add observation to encounter');
+            }
+
+            return response.json(); // Return response JSON data if needed
+        } catch (error) {
+            console.error('Error:', error);
+            throw new Error('Failed to add observation to encounter');
+        }
+    },
     registerUser: async (user: User) => {
         try {
             const response = await fetch(`${API_BASE_URL}/register`, {

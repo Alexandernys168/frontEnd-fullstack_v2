@@ -23,8 +23,8 @@ public class MessageServiceImp implements IService<Msg> {
     }
 
     @Override
-    public void create(Msg entity) {
-        messageRepository.save(entity);
+    public Msg create(Msg entity) {
+        return messageRepository.save(entity);
     }
 
     public List<Msg> getAllMessagesForUser(int userId) {

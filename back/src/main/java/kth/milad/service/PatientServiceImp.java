@@ -25,8 +25,8 @@ public class PatientServiceImp implements IService<Patient>{
         return patientRepository.findById(entity).get();
     }
 
-    public void create(Patient entity){
+    public Patient create(Patient entity){
         System.out.println("in service");
-        patientRepository.save(entity);
+        return patientRepository.save(entity);
     }
 }

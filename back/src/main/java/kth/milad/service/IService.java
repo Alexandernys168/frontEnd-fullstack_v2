@@ -6,5 +6,5 @@ import java.util.List;
 public interface IService <E> {
     List<E> getAll();
     E getById(int entity);
-    void create(E entity);
+    E create(E entity);
 }
