@@ -22,6 +22,9 @@ public class Observation {
     private int id;
     private String msg;
     private LocalDateTime timeStamp;
+    @ElementCollection
+    private List<String> conditions;
+
 
     @JsonIgnore
     @ManyToOne

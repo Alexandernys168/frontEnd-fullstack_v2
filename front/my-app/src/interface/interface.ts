@@ -26,6 +26,7 @@ export interface Encounter {
 export interface Observation {
     msg: string;
     timeStamp: string;
+    conditions: string[];
 
 }
 

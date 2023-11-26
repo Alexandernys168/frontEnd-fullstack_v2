@@ -39,13 +39,13 @@ public class EncounterServiceImp implements IService<Encounter>{
     }
 
 
-    public List<Encounter> getAllEncountersByPatientId(int patientId) {
-        return encounterRepository.findAllByPatientId(patientId);
+    public List<Encounter> getAllEncountersByUserId(int userId) {
+        return encounterRepository.findAllByUserId(userId);
     }
 
 
-    public void addObservationByPatientId(int patientId, Observation observation) {
-        Encounter encounter = encounterRepository.findEncounterByPatientId(patientId);
+    public void addObservationByUserId(int userId, Observation observation) {
+        Encounter encounter = encounterRepository.findEncounterByUserId(userId);
 
         if (encounter != null) {
 
@@ -59,7 +59,7 @@ public class EncounterServiceImp implements IService<Encounter>{
 
             encounterRepository.save(encounter);
         } else {
-            System.out.println("Observation couldn't be added because encounter is null: " + patientId);
+            System.out.println("Observation couldn't be added because encounter is null: " + userId);
         }
     }
 

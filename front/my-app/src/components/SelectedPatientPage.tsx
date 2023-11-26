@@ -12,6 +12,7 @@ const SelectedPatientPage = () => {
     const [previousEncounters, setPreviousEncounters] = useState<Encounter[]>([]);
     const [previousObservations, setPreviousObservations] = useState<Encounter[]>([]);
     const [note, setNote] = useState('');
+    const [conditions, setConditions] = useState<string[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,6 +22,19 @@ const SelectedPatientPage = () => {
             ApiService.getAllEncountersByPatientId(parseInt(patientId)).then((data) => setPreviousEncounters(data));
         }
     }, [patientId]);
+
+    const handleAddCondition = () => {
+        if (conditions && conditions.length >= 0) {
+            const updatedConditions = [...conditions, '']; // Add an empty string for a new condition
+            setConditions(updatedConditions);
+        }
+    };
+
+    const handleConditionChange = (index: number, value: string) => {
+        const updatedConditions = [...conditions];
+        updatedConditions[index] = value;
+        setConditions(updatedConditions);
+    };
 
     const handleAddNote = async () => {
         try {
@@ -37,7 +51,8 @@ const SelectedPatientPage = () => {
                 // If encounter creation was successful, add the observation
                 const observationData = {
                     msg: note,
-                    timeStamp: new Date().toISOString()
+                    timeStamp: new Date().toISOString(),
+                    conditions: conditions,
                 };
                 console.log("Encounter is: " + encounterCreation);
 
@@ -78,6 +93,17 @@ const SelectedPatientPage = () => {
                         onChange={(e) => setNote(e.target.value)}
                     ></textarea>
                     <button onClick={handleAddNote}>Add Note</button>
+                    <button onClick={handleAddCondition}>Add Conditions</button>
+                    {conditions.map((condition, index) => (
+                        <div key={index}>
+                            <input
+                                type="text"
+                                value={condition}
+                                onChange={(e) => handleConditionChange(index, e.target.value)}
+                                placeholder={`Condition ${index + 1}`}
+                            />
+                        </div>
+                    ))}
                     <div>
                         <h3>Messages</h3>
                         {/* Display messages */}

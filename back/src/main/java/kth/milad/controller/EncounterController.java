@@ -37,14 +37,14 @@ public class EncounterController {
         }
     }
 
-    @GetMapping("/encounter/patient/{patientId}")
-    public List<Encounter> getAllEncountersByPatientId(@PathVariable int patientId) {
-        return encounterServiceImp.getAllEncountersByPatientId(patientId);
+    @GetMapping("/encounter/patient/{userId}")
+    public List<Encounter> getAllEncountersByUserId(@PathVariable int userId) {
+        return encounterServiceImp.getAllEncountersByUserId(userId);
     }
 
-    @PostMapping("/patient/{patientId}/observation")
-    public void addObservationByPatientId(@PathVariable int patientId, @RequestBody Observation observation) {
-        encounterServiceImp.addObservationByPatientId(patientId, observation);
+    @PostMapping("/patient/{userId}/observation")
+    public void addObservationByUserId(@PathVariable int userId, @RequestBody Observation observation) {
+        encounterServiceImp.addObservationByUserId(userId, observation);
     }
 
     @PostMapping("/encounter/{encounterId}/observation")

@@ -18,7 +18,7 @@ public class Encounter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int patientId;
+    private int userId;
     private LocalDateTime timeStamp;
 
     @OneToMany(mappedBy = "encounter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
