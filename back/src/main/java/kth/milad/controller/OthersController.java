@@ -3,6 +3,7 @@ package kth.milad.controller;
 import kth.milad.entity.Others;
 import kth.milad.entity.Patient;
 import kth.milad.service.IService;
+import kth.milad.service.OthersServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,12 @@ import java.util.List;
 public class OthersController {
 
     private IService<Others> othersService;
+    private OthersServiceImp othersServiceImp;
 
 
     @Autowired
-    public OthersController(IService<Others> othersService) {
-        this.othersService = othersService;
+    public OthersController(IService<Others> othersService, OthersServiceImp othersServiceImp) {
+        this.othersService = othersService; this.othersServiceImp = othersServiceImp;
     }
 
     @GetMapping("/others")
@@ -32,6 +34,11 @@ public class OthersController {
     public Others getOthersById(@PathVariable int id) {
         Others others =  othersService.getById(id);
         return  others;
+    }
+
+    @GetMapping("/others/email/{email}")
+    public Others getOthersById(@PathVariable String email) {
+        return othersServiceImp.getByEmail(email);
     }
 
     @PostMapping("other")

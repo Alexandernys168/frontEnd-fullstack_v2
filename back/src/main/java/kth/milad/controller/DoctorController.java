@@ -1,13 +1,12 @@
 package kth.milad.controller;
 
 import kth.milad.entity.Doctor;
-import kth.milad.entity.Patient;
+import kth.milad.service.DoctorServiceImp;
 import kth.milad.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.util.List;
 
 @RestController
@@ -15,10 +14,12 @@ import java.util.List;
 public class DoctorController {
 
     private IService<Doctor> doctorService;
+    private DoctorServiceImp doctorServiceImp;
 
     @Autowired
-    public DoctorController(IService<Doctor> doctorService) {
+    public DoctorController(IService<Doctor> doctorService, DoctorServiceImp doctorServiceImp) {
         this.doctorService = doctorService;
+        this.doctorServiceImp = doctorServiceImp;
     }
 
     @GetMapping("/doctors")
@@ -32,6 +33,10 @@ public class DoctorController {
     public Doctor getDoctorById(@PathVariable int id) {
         Doctor doctor =  doctorService.getById(id);
         return doctor;
+    }
+    @GetMapping("/doctors/email/{email}")
+    public Doctor getDoctorById(@PathVariable String email) {
+        return doctorServiceImp.getByEmail(email);
     }
 
     @PostMapping("doctor")
