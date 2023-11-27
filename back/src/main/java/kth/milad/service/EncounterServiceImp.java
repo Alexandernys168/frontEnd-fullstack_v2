@@ -43,6 +43,8 @@ public class EncounterServiceImp implements IService<Encounter>{
         return encounterRepository.findAllByUserId(userId);
     }
 
+    public List<Encounter> getAllEncounterIdsByUserId(int userId) { return encounterRepository.findAllIdsByUserId(userId);}
+
 
     public void addObservationByUserId(int userId, Observation observation) {
         Encounter encounter = encounterRepository.findEncounterByUserId(userId);

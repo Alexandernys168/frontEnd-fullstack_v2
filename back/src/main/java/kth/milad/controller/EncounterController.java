@@ -42,6 +42,11 @@ public class EncounterController {
         return encounterServiceImp.getAllEncountersByUserId(userId);
     }
 
+    @GetMapping("/encounter/patient/encounterId/{userId}")
+    public List<Encounter> getAllEncounterIdsByUserId(@PathVariable int userId) {
+        return encounterServiceImp.getAllEncounterIdsByUserId(userId);
+    }
+
     @PostMapping("/patient/{userId}/observation")
     public void addObservationByUserId(@PathVariable int userId, @RequestBody Observation observation) {
         encounterServiceImp.addObservationByUserId(userId, observation);

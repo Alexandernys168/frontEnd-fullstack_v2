@@ -20,6 +20,16 @@ public class PatientServiceImp implements IService<Patient>{
         return list;
     }
 
+    public int getUserIdByPatientId(int id){
+        return patientRepository.findUserIdById(id);
+    }
+
+    public Patient getPatientByEmail(String email){
+        return patientRepository.getPatientByEmail(email);
+    }
+
+    public Patient getPatientByUserId(int userId) { return patientRepository.getPatientByUserId(userId);}
+
     @Override
     public Patient getById(int entity) {
         return patientRepository.findById(entity).get();

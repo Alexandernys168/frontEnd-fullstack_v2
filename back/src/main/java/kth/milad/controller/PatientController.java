@@ -2,6 +2,7 @@ package kth.milad.controller;
 
 import kth.milad.entity.Patient;
 import kth.milad.service.IService;
+import kth.milad.service.PatientServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,13 @@ import java.util.List;
 @CrossOrigin
 public class PatientController {
     private IService<Patient> patientService;
+    private PatientServiceImp patientServiceImp;
 
 
     @Autowired
-    public PatientController(IService<Patient> patientService) {
+    public PatientController(IService<Patient> patientService, PatientServiceImp patientServiceImp) {
         this.patientService = patientService;
+        this.patientServiceImp = patientServiceImp;
     }
 
     @GetMapping("/patients")
@@ -26,10 +29,22 @@ public class PatientController {
         return list;
     }
 
+    @GetMapping("/patient/{id}/userId")
+    public int getUserIdByPatientId(@PathVariable int id) {
+        return patientServiceImp.getUserIdByPatientId(id);
+    }
+
     @GetMapping("/patient/{id}")
     public Patient getPatientById(@PathVariable int id) {
-        Patient patient =  patientService.getById(id);
-       return  patient;
+        return patientService.getById(id);
+    }
+
+    @GetMapping("/patient/userId/{userId}")
+    public Patient getPatientByUserId(@PathVariable int userId) { return patientServiceImp.getPatientByUserId(userId);}
+
+    @GetMapping("/patient/email/{email}")
+    public Patient getPatientByEmail(@PathVariable String email) {
+        return patientServiceImp.getPatientByEmail(email);
     }
 
     @PostMapping("patient")

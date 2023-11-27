@@ -8,4 +8,6 @@ import java.util.List;
 public interface EncounterRepository extends JpaRepository<Encounter,Integer> {
     List<Encounter> findAllByUserId(int userId);
     Encounter findEncounterByUserId(int userId);
+
+    List<Encounter> findAllIdsByUserId(int userId);
 }

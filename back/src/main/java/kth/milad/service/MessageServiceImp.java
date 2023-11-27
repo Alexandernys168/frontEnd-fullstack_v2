@@ -37,6 +37,6 @@ public class MessageServiceImp implements IService<Msg> {
         // Placeholder: Implement the actual logic to get a conversation between two users
         // For example, you might want to find messages where the sender is either the logged-in user or the other user,
         // and the receiver is either the logged-in user or the other user
-        return messageRepository.findConversationBySenderAndReceiver(loggedInUserId, otherUserId);
+        return messageRepository.findMsgBySenderAndReceiver(loggedInUserId, otherUserId);
     }
 }

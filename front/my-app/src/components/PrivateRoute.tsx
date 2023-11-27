@@ -12,7 +12,7 @@ const PrivateRoute = ({  children, allowedUserTypes  } : any) => {
     //const navigate = useNavigate();
     //const { user } = useContext(UserContext);
     //const storedUser = localStorage.getItem('currentUser');
-    const storedUser = sessionStorage.getItem('currentUser');
+    const storedUser = sessionStorage.getItem('currentUserLoggedIn');
     const user = storedUser ? JSON.parse(storedUser) : null;
     let location = useLocation();
 

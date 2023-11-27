@@ -1,15 +1,33 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ApiService from '../services/ApiServices';
 import { useNavigate } from 'react-router-dom';
-import {User} from "../interface/interface";
+import {Patient, PatientForPage, User} from "../interface/interface";
 import {UserContext} from "./UserSession";
+import ApiServices from "../services/ApiServices";
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('');
+    const [userId, setUserId] = useState<number| undefined>();
+    const [patientDetails, setPatientDetails] = useState<PatientForPage>();
     const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        if (patientDetails) {
+            // Redirect after getting patient details
+            const parsedUserId = Number(patientDetails.userId); // Convert to a number
+            if (!isNaN(parsedUserId)) {
+                setUserId(parsedUserId); // Update userId state
+                console.log("PatientDetails: " + parsedUserId);
+                navigate(`/patient/${parsedUserId}`);
+            } else {
+                console.error("Invalid userId received from patientDetails:", patientDetails.userId);
+                // Handle the scenario where userId is not a valid number
+            }
+        }
+    }, [navigate, patientDetails]);
 
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,22 +37,33 @@ const LoginForm = () => {
             const user = { email, password, userType };
             const loginSuccess = await ApiService.loginUser(user);
 
-
             if (loginSuccess) {
-
-                //localStorage.setItem('currentUser', JSON.stringify({ email, userType }));
-                sessionStorage.setItem('currentUser', JSON.stringify({ email, userType }));
-
-                setUser({ email, userType }); // Modify this according to the user data you receive
+                let data;
                 if (userType === 'PATIENT') {
-                    navigate('/patient'); // Redirect patient to their page
+                    data = await ApiService.getPatientByEmail(email);
                 } else if (userType === 'DOCTOR') {
-                    navigate('/doctor'); // Redirect doctor to their page
+                    data = await ApiServices.getDoctorByEmail(email);
                 } else if (userType === 'OTHERS') {
-                    navigate('/staff'); // Redirect others to their page
+                    data = await ApiServices.getOthersByEmail(email);
                 }
-                alert('Login successful!\nYou wrote: ' + email + ", " + userType);
 
+                if (data && data.userId) {
+                    setUserId(data.userId);
+                    setUser({ userId: data.userId, email, userType });
+                    sessionStorage.setItem('currentUserLoggedIn', JSON.stringify({ userId: data.userId, email, userType }));
+
+                    // Redirect based on user type
+                    if (userType === 'DOCTOR') {
+                        navigate('/doctor');
+                    } else if (userType === 'OTHERS') {
+                        navigate('/staff');
+                    }
+
+                    alert('Login successful!\nYou wrote: ' + email + ', ' + userType);
+                } else {
+                    // Handle unexpected data format or missing data
+                    alert('Failed to fetch user data');
+                }
             } else {
                 // Handle incorrect credentials
                 alert('Invalid username or password');
@@ -42,6 +71,7 @@ const LoginForm = () => {
         } catch (error) {
             // Handle API fetch error
             console.error('Error:', error);
+            alert('Error occurred during login');
         }
     };
 

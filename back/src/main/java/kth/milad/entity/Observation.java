@@ -22,7 +22,7 @@ public class Observation {
     private int id;
     private String msg;
     private LocalDateTime timeStamp;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> conditions;
 
 

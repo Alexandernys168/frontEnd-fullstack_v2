@@ -31,4 +31,9 @@ public class OthersServiceImp implements IService<Others>{
         System.out.println("In others Service ");
          return othersRepository.save(entity);
     }
+
+    public Others getByEmail(String email) {
+        return othersRepository.findByEmail(email);
+    }
+
 }
