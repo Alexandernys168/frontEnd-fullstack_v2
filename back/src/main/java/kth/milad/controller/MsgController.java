@@ -41,11 +41,11 @@ public class MsgController {
         return msgService.getAllMessagesForUser(userId);
     }
 
-    @GetMapping("/msgs/conversation/{otherUserId}")
-    public List<Msg> getConversationWithUser(@PathVariable int loggedInUserId, int otherUserId) {
+    @GetMapping("/msgs/conversation/{loggedInUserId}/{otherUserId}")
+    public List<Msg> getConversationWithUser(@PathVariable int loggedInUserId, @PathVariable int otherUserId) {
         // Assuming you have a method in the service to get a conversation with another user
         // Note: You might need the currently authenticated user ID here
-         loggedInUserId = 1; // todo Replace with your actual mechanism to get the logged-in user ID
+         //loggedInUserId = 1; // todo Replace with your actual mechanism to get the logged-in user ID
         return msgService.getConversationBySenderAndReceiverId(loggedInUserId, otherUserId);
     }
 

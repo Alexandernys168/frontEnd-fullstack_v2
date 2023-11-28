@@ -26,8 +26,10 @@ public class DoctorServiceImp implements IService<Doctor>{
         return doctorRepository.findById(entity).get();
     }
 
+    public Doctor getByEmail(String email) { return doctorRepository.findByEmail(email);}
+
     @Override
-    public void create(Doctor entity) {
-        doctorRepository.save(entity);
+    public Doctor create(Doctor entity) {
+        return doctorRepository.save(entity);
     }
 }

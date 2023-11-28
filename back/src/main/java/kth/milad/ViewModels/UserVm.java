@@ -12,9 +12,12 @@ import lombok.*;
 @ToString
 @Builder
 public class UserVm {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String userType;
     private String email;
     private String password;
+    private int userId;
 }

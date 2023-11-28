@@ -27,8 +27,13 @@ public class OthersServiceImp implements IService<Others>{
     }
 
     @Override
-    public void create(Others entity) {
+    public Others create(Others entity) {
         System.out.println("In others Service ");
-        othersRepository.save(entity);
+         return othersRepository.save(entity);
     }
+
+    public Others getByEmail(String email) {
+        return othersRepository.findByEmail(email);
+    }
+
 }
