@@ -51,7 +51,10 @@ const LoginForm = () => {
                     setUserId(data.userId);
                     setUser({ userId: data.userId, email, userType });
                     sessionStorage.setItem('currentUserLoggedIn', JSON.stringify({ userId: data.userId, email, userType }));
-
+                    if(userType === 'PATIENT') {
+                        setPatientDetails(data);
+                    }
+                    
                     // Redirect based on user type
                     if (userType === 'DOCTOR') {
                         navigate('/doctor');

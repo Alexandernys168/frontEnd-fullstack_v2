@@ -2,7 +2,7 @@ import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 // import ApiService from '../services/ApiServices'; // Du måste implementera denna service
 import {doctors, patients} from "../utils/mockData";
 import {useParams} from "react-router-dom";
-import {Doctor, EncounterForDisplay, Msg, Others, Patient} from "../interface/interface";
+import {Doctor, EncounterForDisplay, Msg, MsgForDisplay, Others, Patient} from "../interface/interface";
 import ApiServices from "../services/ApiServices";
 import ApiService from "../services/ApiServices";
 
@@ -13,6 +13,7 @@ const PatientPage = () => {
     const [otherList, setOtherList] = useState<Others[]>([]);
     const [previousEncounters, setPreviousEncounters] = useState<EncounterForDisplay[]>([]);
     const [expandedEncounterId, setExpandedEncounterId] = useState<number | null>(null);
+    const [expandedMessageId, setExpandedMessageId] = useState<number | null >(null);
     const toggleExpand = (encounterId: number) => {
         if (expandedEncounterId === encounterId) {
             setExpandedEncounterId(null); // Collapse if already expanded
@@ -20,13 +21,22 @@ const PatientPage = () => {
             setExpandedEncounterId(encounterId); // Expand clicked encounter
         }
     };
+    const toggleExpandMessage = (messageId: number) => {
+        if (expandedMessageId === messageId) {
+            setExpandedMessageId(null); // Collapse if already expanded
+        } else {
+            setExpandedMessageId(messageId); // Expand clicked encounter
+        }
+    };
     const [userId, setUserId] = useState('');
     const [patientInfo, setPatientInfo] = useState(null); // Använd för att lagra patientinformation
     const [newDoctorMessage, setNewDoctorMessage] = useState('');
     const [newOtherMessage, setNewOtherMessage] = useState('');
-    const [allMessages, setAllMessages] = useState<Msg[]>([]);
+    const [allMessages, setAllMessages] = useState<MsgForDisplay[]>([]);
     const [selectedDoctorId, setSelectedDoctorId] = useState('');
     const [selectedDoctorName, setSelectedDoctorName] = useState('');
+    const [senderName, setSenderName] = useState('');
+    const [message, setMessage] = useState<MsgForDisplay | null>(null);
 
     useEffect(() => {
         if (patientId) {
@@ -49,6 +59,8 @@ const PatientPage = () => {
         ApiServices.getDoctorInfo().then((data) => setDoctorList(data));
         ApiServices.getOthers().then((data) => setOtherList(data));
     },[]);
+
+
 
     const sendMessage = (staffId: number, staffType: 'doctor' | 'other') => {
         const message = {
@@ -135,10 +147,17 @@ const PatientPage = () => {
                         <h3>Messages</h3>
                         {allMessages.map((msg, index) => (
                             <div key={index}>
-                                <p>Content: {msg.content}</p>
-                                <p>Timestamp: {formattedDate(msg.timeStamp)}</p>
-                                <p>Sender: {msg.sender}</p>
-                                <p>Receiver: {msg.receiver}</p>
+                                <h4 onClick={() => toggleExpandMessage(msg.id)}>Message ⬇️{formattedDate(msg.timeStamp)}</h4>
+                                {expandedMessageId === msg.id && (
+                                    <div>
+                                        <p>Time: {formattedTime(msg.timeStamp)}</p>
+                                        <p>Content: {msg.content}</p>
+
+                                    </div>
+                                )}
+
+
+
                             </div>
                         ))}
                     </div>

@@ -34,6 +34,8 @@ public class DoctorController {
         Doctor doctor =  doctorService.getById(id);
         return doctor;
     }
+
+
     @GetMapping("/doctors/email/{email}")
     public Doctor getDoctorById(@PathVariable String email) {
         return doctorServiceImp.getByEmail(email);

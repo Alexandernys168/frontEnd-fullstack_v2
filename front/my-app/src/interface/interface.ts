@@ -64,6 +64,15 @@ export interface Msg {
     receiver: number;
 }
 
+export interface MsgForDisplay {
+    senderName: string;
+    id: number;
+    content: string;
+    timeStamp: string;
+    sender: number;
+    receiver: number;
+}
+
 export interface Doctor {
     userId: number;
     name: string;
