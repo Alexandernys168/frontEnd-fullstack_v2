@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ApiService from '../services/ApiServices';
 import { Patient, Msg } from "../interface/interface";
 import ApiServices from "../services/ApiServices";
+import DrawingForm from "./DrawingForm";
 
 interface MessageItemProps {
     message: Msg;
@@ -165,6 +166,9 @@ const DoctorPage = () => {
                     </li>
                 ))}
             </ul>
+
+            <h3>Draw Image</h3>
+            <DrawingForm></DrawingForm>
         </div>
 
     );

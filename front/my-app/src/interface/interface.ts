@@ -84,3 +84,15 @@ export interface Others {
     name: string;
     email: string;
 }
+
+export interface ImageCreation {
+    name: string;
+    description: string;
+    imageData: string;
+}
+
+export interface ImageDetails {
+    name: string;
+    description: string;
+    // Add other properties as needed
+}

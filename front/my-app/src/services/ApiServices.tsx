@@ -1,13 +1,16 @@
 
-import {Encounter, LoginUser, Msg, Observation, User} from "../interface/interface";
+import {Encounter, LoginUser, Msg, Observation, User, ImageCreation} from "../interface/interface";
 
 const API_BASE_URL = 'http://localhost:8080'; // Byt ut med din backend URL
-
+const API_MSG_URL = 'http://localhost:8081';
+const API_USER_URL = 'http://localhost:8082';
+const API_JOURNAL_URL = 'http://localhost:8083';
+const API_IMAGE_URL = 'http://localhost:8084';
 
 
 const ApiService = {
     getPatients: () => {
-        return fetch(`${API_BASE_URL}/patients`)
+        return fetch(`${API_USER_URL}/patients`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -16,7 +19,7 @@ const ApiService = {
             });
     },
     getPatientById: (id: number) => {
-        return fetch(`${API_BASE_URL}/patient/${id}`)
+        return fetch(`${API_USER_URL}/patient/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -25,7 +28,7 @@ const ApiService = {
             });
     },
     getPatientByEmail: (email: string) => {
-        return fetch(`${API_BASE_URL}/patient/email/${email}`)
+        return fetch(`${API_USER_URL}/patient/email/${email}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -34,7 +37,7 @@ const ApiService = {
             });
     },
     getPatientByUserId: (userId: number) => {
-        return fetch(`${API_BASE_URL}/patient/userId/${userId}`)
+        return fetch(`${API_USER_URL}/patient/userId/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -43,7 +46,7 @@ const ApiService = {
             });
     },
     getDoctorByEmail: (email: string) => {
-        return fetch(`${API_BASE_URL}/doctors/email/${email}`)
+        return fetch(`${API_USER_URL}/doctors/email/${email}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -52,7 +55,7 @@ const ApiService = {
             });
     },
     getOthersByEmail: (email: string) => {
-        return fetch(`${API_BASE_URL}/others/email/${email}`)
+        return fetch(`${API_USER_URL}/others/email/${email}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -62,7 +65,7 @@ const ApiService = {
     },
 
     getUserIdByPatientId: (id: number) => {
-        return fetch(`${API_BASE_URL}/patient/${id}/userId`)
+        return fetch(`${API_USER_URL}/patient/${id}/userId`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -71,7 +74,7 @@ const ApiService = {
             });
     },
     getConversationBySenderAndReceiver: (sender: number, receiver: number) => {
-        return fetch(`${API_BASE_URL}/msgs/conversation/${sender}/${receiver}`)
+        return fetch(`${API_MSG_URL}/msgs/conversation/${sender}/${receiver}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -80,7 +83,7 @@ const ApiService = {
             });
     },
     getMessages: () => {
-        return fetch(`${API_BASE_URL}/msgs`)
+        return fetch(`${API_MSG_URL}/msgs`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av meddelanden');
@@ -89,7 +92,7 @@ const ApiService = {
             });
     },
     getAllMessagesForUser: (userId: number) => {
-        return fetch(`${API_BASE_URL}/msgs/user/${userId}`)
+        return fetch(`${API_MSG_URL}/msgs/user/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av meddelanden');
@@ -98,7 +101,7 @@ const ApiService = {
             });
     },
     getConversationById: (otherUserId: number) => {
-        return fetch(`${API_BASE_URL}/msgs/conversation/${otherUserId}`)
+        return fetch(`${API_MSG_URL}/msgs/conversation/${otherUserId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av meddelanden');
@@ -107,7 +110,7 @@ const ApiService = {
             });
     },
     getDoctorInfo: () => {
-        return fetch(`${API_BASE_URL}/doctors`)
+        return fetch(`${API_USER_URL}/doctors`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -116,7 +119,7 @@ const ApiService = {
             });
     },
     getDoctorById: (id: number) => {
-        return fetch(`${API_BASE_URL}/doctors/${id}`)
+        return fetch(`${API_USER_URL}/doctors/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -125,7 +128,7 @@ const ApiService = {
             });
     },
     getEncounterByPatientId: (patientId: number) => {
-        return fetch(`${API_BASE_URL}/encounter/patient/${patientId}`)
+        return fetch(`${API_JOURNAL_URL}/encounter/patient/${patientId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -134,7 +137,7 @@ const ApiService = {
             });
     },
     getOthers: () => {
-        return fetch(`${API_BASE_URL}/others`)
+        return fetch(`${API_USER_URL}/others`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -143,7 +146,7 @@ const ApiService = {
             });
     },
     getOthersById: (id: number) => {
-        return fetch(`${API_BASE_URL}/others/${id}`)
+        return fetch(`${API_USER_URL}/others/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -152,7 +155,7 @@ const ApiService = {
             });
     },
     getUsers: () => {
-        return fetch(`${API_BASE_URL}/users`)
+        return fetch(`${API_USER_URL}/users`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -161,7 +164,7 @@ const ApiService = {
             });
     },
     getAllEncountersByUserId: (userId: number) => {
-        return fetch(`${API_BASE_URL}/encounter/patient/${userId}`)
+        return fetch(`${API_JOURNAL_URL}/encounter/patient/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -170,7 +173,7 @@ const ApiService = {
             });
     },
     getAllEncounterIdsByUserId: (userId: number) => {
-        return fetch(`${API_BASE_URL}/encounter/patient/encounterId/${userId}`)
+        return fetch(`${API_JOURNAL_URL}/encounter/patient/encounterId/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -179,7 +182,26 @@ const ApiService = {
             });
     },
     getObservationByEncounterId: (encounterId: number) => {
-        return fetch(`${API_BASE_URL}/observations/encounter/${encounterId}`)
+        return fetch(`${API_JOURNAL_URL}/observations/encounter/${encounterId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Nätverksfel vid hämtning av data');
+                }
+                return response.json();
+            });
+    },
+    getImageById: (imageId: number) => {
+        return fetch(`${API_IMAGE_URL}/images/${imageId}/data`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Nätverksfel vid hämtning av data');
+                }
+                return response.json();
+            });
+    },
+
+    getAllImages: () => {
+        return fetch(`${API_IMAGE_URL}/images/list`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Nätverksfel vid hämtning av data');
@@ -189,7 +211,7 @@ const ApiService = {
     },
     createEncounter: async (encounter: Encounter) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/encounter`, {
+            const response = await fetch(`${API_JOURNAL_URL}/encounter`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -211,7 +233,7 @@ const ApiService = {
     },
     createObservation: async (patientId: number, observation: Observation) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/patient/${patientId}/observation`, {
+            const response = await fetch(`${API_JOURNAL_URL}/patient/${patientId}/observation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -231,7 +253,7 @@ const ApiService = {
     },
     addObservationToEncounter: async (encounterId: number, observation: Observation) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/encounter/${encounterId}/observation`, {
+            const response = await fetch(`${API_JOURNAL_URL}/encounter/${encounterId}/observation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -251,7 +273,7 @@ const ApiService = {
     },
     registerUser: async (user: User) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/register`, {
+            const response = await fetch(`${API_USER_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -271,7 +293,7 @@ const ApiService = {
     },
     loginUser: async (user: LoginUser) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/login`, {
+            const response = await fetch(`${API_USER_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -291,7 +313,7 @@ const ApiService = {
     },
     createMessage: async (message: Msg) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/msg`, {
+            const response = await fetch(`${API_MSG_URL}/msg`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -308,7 +330,48 @@ const ApiService = {
             console.error('Message Error:', error);
             throw new Error('Message failed'); // Throw error for failed registration
         }
-    }
+    },
+
+    createImage: async (image: ImageCreation) => {
+        try {
+            const response = await fetch(`${API_IMAGE_URL}/image`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(image),
+            });
+            if (!response.ok) {
+                throw  new Error(`Creating Image failed`);
+            }
+            return true;
+        } catch (error) {
+            console.error('Message Error:', error);
+            throw new Error('Image failed');
+        }
+    },
+    updateImageById: async (imageId: number, updatedDetails: ImageCreation) => {
+        try {
+            // Make a PUT request to update the image details
+            const response = await fetch(`${API_IMAGE_URL}/images/${imageId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedDetails),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update image details');
+            }
+
+            // Return the updated image details
+            return response.json();
+        } catch (error) {
+            console.error('Error updating image details:', error);
+            throw error; // Rethrow the error to handle it in the component
+        }
+    },
     // Lägg till fler funktioner för att skicka data och utföra andra API-anrop
 };
 
