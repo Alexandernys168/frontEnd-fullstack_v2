@@ -1,6 +1,5 @@
 
 import React, { useState, useRef, useEffect  } from 'react';
-import {ReactSketchCanvas, CanvasPath } from 'react-sketch-canvas';
 import ApiService from "../services/ApiServices";
 import {ImageCreation, ImageDetails} from "../interface/interface"; // Assuming createImage function exists
 
@@ -37,7 +36,7 @@ const DrawingForm: React.FC = () => {
             if (context) {
 
                 context.lineCap = 'round';
-                context.strokeStyle = 'black';
+                context.strokeStyle = 'red';
                 context.lineWidth = 5;
                 contextRef.current = context;
             }
@@ -142,7 +141,7 @@ const DrawingForm: React.FC = () => {
             const ctx = canvasRef.current.getContext('2d');
             if (ctx) {
                 ctx.font = '32px Arial'; // Set the font size and family
-                ctx.fillStyle = '#000000'; // Set the text color
+                ctx.fillStyle = '#ff0000'; // Set the text color
                 ctx.fillText(text, textPosition.x, textPosition.y);
             }
         }
