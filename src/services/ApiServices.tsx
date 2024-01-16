@@ -4,7 +4,7 @@ import {Encounter, LoginUser, Msg, Observation, User, ImageCreation} from "../in
 const API_BASE_URL = 'http://localhost:8080'; // Byt ut med din backend URL
 const API_MSG_URL = 'http://localhost:8081';
 const API_USER_URL = 'http://localhost:8082';
-const API_JOURNAL_URL = 'http://localhost:8083';
+const API_JOURNAL_URL = 'http://localhost:8080';
 const API_IMAGE_URL = 'http://localhost:8084';
 
 
