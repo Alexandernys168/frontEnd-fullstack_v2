@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {EncounterForDisplay, Msg, Observation, Patient} from "../interface/interface";
+import {EncounterForDisplay, Msg, Patient} from "../interface/interface";
 import ApiServices from "../services/ApiServices";
-import ApiService from "../services/ApiServices";
+
 
 
 const SelectedPatientPage = () => {
@@ -11,10 +11,8 @@ const SelectedPatientPage = () => {
     const [previousEncounters, setPreviousEncounters] = useState<EncounterForDisplay[]>([]);
     const [messages, setMessages] = useState<Msg[]>([]);
     const [messagesReply, setMessagesReply] = useState<Msg[]>([]);
-    const [previousObservations, setPreviousObservations] = useState<Observation>();
-    const [listOfEncounterIds, setListOfEncounterIds] = useState<number[]>([]);
     const [note, setNote] = useState('');
-    const [encounterId, setEncounterId] = useState('');
+
     const [userId, setUserId] = useState('');
     const [conditions, setConditions] = useState<string[]>([]);
     const [expandedEncounterId, setExpandedEncounterId] = useState<number | null>(null);
@@ -25,7 +23,7 @@ const SelectedPatientPage = () => {
             setExpandedEncounterId(encounterId); // Expand clicked encounter
         }
     };
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (patientId) {

@@ -1,17 +1,17 @@
-import React, {useContext, useState} from 'react';
-import LoginPage from './components/LoginPage';
+import React from 'react';
+
 import PatientPage from './components/PatientPage';
 import DoctorPage from './components/DoctorPage';
 import StaffPage from './components/StaffPage';
 import RegisterForm from "./components/RegisterForm";
-import {BrowserRouter, Link, Navigate, Route, Router, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Home from "./components/Home";
 import {UserProvider} from "./components/UserSession";
-import {UserContext} from "./components/UserSession";
+
 import PrivateRoute from "./components/PrivateRoute";
 import SelectedPatientPage from "./components/SelectedPatientPage";
-import ApiServices from "./services/ApiServices";
-import {Patient} from "./interface/interface";
+
+
 
 
 

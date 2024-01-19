@@ -72,8 +72,7 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, handleReply }) => {
 const DoctorPage = () => {
     const [patients, setPatients] = useState<Patient[]>([]);
     const [messages, setMessages] = useState<Msg[]>([]);
-    const [newMessageContent, setNewMessageContent] = useState('');
-    const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+
 
     const fetchMessages = async (userId: number) => {
         try {
@@ -116,7 +115,7 @@ const DoctorPage = () => {
                 }
                 // Here, you can set the selectedPatient based on the receiverId
                 const selectedPatient = patients.find((patient) => patient.userId === receiverId);
-                setSelectedPatient(selectedPatient || null);
+
 
                 const messageData = {
                     content: replyContent,
@@ -133,7 +132,7 @@ const DoctorPage = () => {
                     fetchMessages(userId);
                 }
 
-                setNewMessageContent('');
+
             } else {
                 console.error('Missing reply content or selected patient');
             }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
+import React, {useState, useEffect} from 'react';
 // import ApiService from '../services/ApiServices'; // Du måste implementera denna service
 import {doctors, patients} from "../utils/mockData";
 import {useParams} from "react-router-dom";
@@ -29,14 +29,10 @@ const PatientPage = () => {
         }
     };
     const [userId, setUserId] = useState('');
-    const [patientInfo, setPatientInfo] = useState(null); // Använd för att lagra patientinformation
+
     const [newDoctorMessage, setNewDoctorMessage] = useState('');
     const [newOtherMessage, setNewOtherMessage] = useState('');
     const [allMessages, setAllMessages] = useState<MsgForDisplay[]>([]);
-    const [selectedDoctorId, setSelectedDoctorId] = useState('');
-    const [selectedDoctorName, setSelectedDoctorName] = useState('');
-    const [senderName, setSenderName] = useState('');
-    const [message, setMessage] = useState<MsgForDisplay | null>(null);
 
     useEffect(() => {
         if (patientId) {

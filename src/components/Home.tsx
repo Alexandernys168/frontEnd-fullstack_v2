@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import ApiService from '../services/ApiServices';
 import { useNavigate } from 'react-router-dom';
-import {Patient, PatientForPage, User} from "../interface/interface";
+import { PatientForPage} from "../interface/interface";
 import {UserContext} from "./UserSession";
 import ApiServices from "../services/ApiServices";
 
@@ -9,7 +9,7 @@ const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('');
-    const [userId, setUserId] = useState<number| undefined>();
+    const [, setUserId] = useState<number| undefined>();
     const [patientDetails, setPatientDetails] = useState<PatientForPage>();
     const navigate = useNavigate();
     const { setUser } = useContext(UserContext);

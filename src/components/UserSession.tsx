@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import {LoggedInUser, LoginUser} from "../interface/interface";
+import {LoggedInUser} from "../interface/interface";
 
 
 

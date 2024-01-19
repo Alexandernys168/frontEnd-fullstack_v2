@@ -72,8 +72,8 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, handleReply }) => {
 const StaffPage = () => {
     const [patients, setPatients] = useState<Patient[]>([]);
     const [messages, setMessages] = useState<Msg[]>([]);
-    const [newMessageContent, setNewMessageContent] = useState('');
-    const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+    const [, setNewMessageContent] = useState('');
+    const [, setSelectedPatient] = useState<Patient | null>(null);
 
     const fetchMessages = async (userId: number) => {
         try {

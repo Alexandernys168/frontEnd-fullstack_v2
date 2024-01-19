@@ -15,8 +15,8 @@ const DrawingForm: React.FC = () => {
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
     const [path, setPath] = useState<Point[]>([]);
     const [undoStack, setUndoStack] = useState<Point[][]>([]);
-    const [redoStack, setRedoStack] = useState<Point[][]>([]);
-    const [selectedImageId, setSelectedImageId] = useState<number | null>(null);
+    const [, setRedoStack] = useState<Point[][]>([]);
+    const [, setSelectedImageId] = useState<number | null>(null);
 
 
     interface Point {
@@ -72,20 +72,7 @@ const DrawingForm: React.FC = () => {
 
     }
 
-    const redrawCanvas = (paths: Point[][]) => {
-        contextRef.current?.clearRect(0, 0, 600, 500);
 
-        paths.forEach((path, index) => {
-            if (index < paths.length - 1) {
-                contextRef.current?.beginPath();
-                contextRef.current?.moveTo(path[0].x, path[0].y);
-                path.forEach(({ x, y }) => {
-                    contextRef.current?.lineTo(x, y);
-                    contextRef.current?.stroke();
-                });
-            }
-        });
-    };
 
     const clearAll = () => {
         contextRef.current?.clearRect(0, 0, 600, 500);
