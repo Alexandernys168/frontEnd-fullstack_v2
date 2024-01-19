@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 // import ApiService from '../services/ApiServices'; // Du måste implementera denna service
-import {doctors, patients} from "../utils/mockData";
+
 import {useParams} from "react-router-dom";
-import {Doctor, EncounterForDisplay, Msg, MsgForDisplay, Others, Patient} from "../interface/interface";
+import {Doctor, EncounterForDisplay, MsgForDisplay, Others, Patient} from "../interface/interface";
 import ApiServices from "../services/ApiServices";
-import ApiService from "../services/ApiServices";
+
 
 const PatientPage = () => {
     const {patientId} = useParams<{ patientId?: string }>();

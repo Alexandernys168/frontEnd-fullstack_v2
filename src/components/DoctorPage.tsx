@@ -114,7 +114,6 @@ const DoctorPage = () => {
                     senderId = userId;
                 }
                 // Here, you can set the selectedPatient based on the receiverId
-                const selectedPatient = patients.find((patient) => patient.userId === receiverId);
 
 
                 const messageData = {

@@ -1,6 +1,5 @@
 
 import React from "react";
-import {UserContext} from "./UserSession";
 import {Navigate, Outlet, useLocation} from "react-router-dom";
 //import {retrieveUserFromLocalStorage} from "./retrieveUserFromLocalStorage";
 

@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect  } from 'react';
 import ApiService from "../services/ApiServices";
-import {ImageCreation, ImageDetails} from "../interface/interface"; // Assuming createImage function exists
+import {ImageCreation} from "../interface/interface"; // Assuming createImage function exists
 
 
 
