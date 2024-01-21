@@ -2,10 +2,10 @@
 import {Encounter, LoginUser, Msg, Observation, User, ImageCreation} from "../interface/interface";
 
 
-const API_MSG_URL = 'http://localhost:8081';
-const API_USER_URL = 'http://localhost:8082';
-const API_JOURNAL_URL = 'http://localhost:8080';
-const API_IMAGE_URL = 'http://localhost:8084';
+const API_MSG_URL = 'https://msg-service-deployment.app.cloud.cbh.kth.se';
+const API_USER_URL = 'https://user-service-deployment.app.cloud.cbh.kth.se';
+const API_JOURNAL_URL = 'https://journal-service-deployment.app.cloud.cbh.kth.se';
+const API_IMAGE_URL = 'https://image-service-deployment.app.cloud.cbh.kth.se';
 
 
 const ApiService = {
