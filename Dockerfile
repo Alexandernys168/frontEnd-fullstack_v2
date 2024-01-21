@@ -1,26 +1,18 @@
-FROM node:20.5.1-bookworm-slim AS build
+FROM node as build
 WORKDIR /app
-COPY ./package.json ./package-lock.json ./
+ENV PATH /app/node_modules/.bin:$PATH
+ENV CHOKIDAR_USEPOLLING=true
 
-
+COPY ./package.json /app/
+COPY ./package-lock.json /app/
+COPY . /app
+RUN npm ci --production
 RUN npm install
-COPY . ./
-
-
 RUN npm run build
 
-
-#FROM nginx:alpine
-#COPY --from=build /app/dist /usr/share/nginx/html
-#COPY nginx.conf /etc/nginx/conf.d/default.conf
+# stage 2 - build the final image and copy the react build files
+FROM nginx
+COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
-CMD ["npm", "run", "start"]
-
-#FROM node
-#WORKDIR /app
-#COPY ./package.json ./package-lock.json ./
-#RUN npm i
-#COPY . ./
-
-#EXPOSE 3000
-#CMD ["npm", "run", "start"]
+CMD ["nginx", "-g", "daemon off;"]
